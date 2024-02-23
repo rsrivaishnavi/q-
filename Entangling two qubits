@@ -1,0 +1,20 @@
+namespace EntanglementExample {
+    operation EntangleQubits() : Unit {
+        // Allocate two qubits
+        using (qubits = Qubit[2]) {
+            // Apply Hadamard gate to the first qubit to put it into superposition
+            H(qubits[0]);
+
+            // Apply Controlled X (CNOT) gate with the first qubit as the control and the second qubit as the target
+            CNOT(qubits[0], qubits[1]);
+
+            // Both qubits are now entangled
+            // Measure the qubits to observe the entangled state
+            let result1 = M(qubits[0]);
+            let result2 = M(qubits[1]);
+
+            Message($"Measured qubit 1: {result1}");
+            Message($"Measured qubit 2: {result2}");
+        }
+    }
+}
